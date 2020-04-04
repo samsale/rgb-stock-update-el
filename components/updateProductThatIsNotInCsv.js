@@ -11,11 +11,11 @@ const shopify = new Shopify({
 
 
 module.exports = async (productsNotInCsvArray) => {
-  let laminvaleVendors = ['Alba Krapf', 'Amazonas']
+  let elVendors = ['Byron Manor', 'Elur', 'Europa Leisure', 'Europa Stone', 'Exclusive Garden', 'Nardi', 'Solstice Sculptures', 'Summer Terrace', 'Trabella']
   let params = { fields: 'vendor,tags' }
   let emptyArray = []
   let count = 0
-  for(let vendor of laminvaleVendors){
+  for(let vendor of elVendors){
     let fromShopify = await shopify.product.list({vendor: vendor, fields: 'vendor,tags,id'})
       emptyArray.push(fromShopify)
       }
@@ -23,10 +23,14 @@ module.exports = async (productsNotInCsvArray) => {
 
   for (var product of laminvaleProductsOnShopify) {
     if(productsNotInCsvArray.some(object => object.product_id === product.id)){
+      let tagsFromProduct = product.tags
+      // if product does not have the delete tag
+      if (tagsFromProduct.indexOf('delete') === -1) {
       let tagsToUpdate = product.tags + ", delete"
-      await shopify.product.update(product.id, {tags: tagsToUpdate, published_at: null })
+      await shopify.product.update(product.id, {tags: tagsToUpdate })
+          }
       count++
     }
   }
-  console.log(`${count} Laminvale products in store by not in csv`);
+  console.log(`${count} Europa Leisure products in store by not in csv`);
 }

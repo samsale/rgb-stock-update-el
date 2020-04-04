@@ -4,9 +4,11 @@
   "description": "Dropbox XLS to Shopify",
   "main": "main.js",
   "dependencies": {
+    "csvtojson": "^2.0.10",
     "dotenv": "^8.1.0",
     "dropbox": "^4.0.30",
     "https": "^1.0.0",
+    "imap-simple": "^5.0.0",
     "node-fetch": "^2.6.0",
     "pushover-notifications": "^1.2.2",
     "request": "^2.88.0",

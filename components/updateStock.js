@@ -13,9 +13,18 @@ const shopify = new Shopify({
 module.exports = async (arrayOfProducts) => {
   let count = 0
   for(let product of arrayOfProducts){
+    let quanity = 100
+    if (product.stockDescription === "GOOD") {
+      quanity = 30
+    } else if (product.stockDescription === "LOW") {
+      quanity = 6
+    }else if (product.stockDescription === "OUT"){
+      quanity = 0
+    }
     let response = await shopify.inventoryLevel.set({"inventory_item_id": product['inventory_item_id'],
                                       "location_id": 4045635628,
-                                      "available":product['Qty in Stock)']})
+                                      "available":quanity})
+                                    
     count++
   }
   console.log(`${count} products updated in store`);

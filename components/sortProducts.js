@@ -6,14 +6,22 @@ module.exports =  async (stockUpdateArray, inStoreArray) =>{
   let notInStoreArray = []
   let alreadyInStoreArray = []
   for(let value of stockUpdateArray){
-    if(compareSkus(inStoreArray, value['Stock Code']) === undefined){
+    if(compareSkus(inStoreArray, value.sku) === undefined ){
       notInStoreArray.push(value)
     }else{
-      let objWithProductId = inStoreArray.find(obj => obj.sku === value['Stock Code']);
+      let objWithProductId = inStoreArray.find(obj => obj.sku === value.sku);
       value["inventory_item_id"] = objWithProductId.inventory_item_id
       alreadyInStoreArray.push(value)
     }
   }
   console.log(`${alreadyInStoreArray.length} products to update`);
+  let discountinued = notInStoreArray.filter(product => product.comment === "DISCONTINUED")
+  let notDiscountinued = notInStoreArray.filter(product => product.comment !== "DISCONTINUED")
+  console.log(`${notInStoreArray.length} are in the csv but not in store. ${discountinued.length} of those are disconituned`);
+  console.log(`The others that are not discontinued are:`)
+  for (var variable of notDiscountinued) {
+    console.log(variable.sku);
+  }
+
   return alreadyInStoreArray
 }

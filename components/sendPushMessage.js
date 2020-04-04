@@ -13,9 +13,9 @@ var p = new Push( {
 
 module.exports = (errorCode) => {
 	if (errorCode) {
-		var msg = {message: `Laminvale Stock Update Error - ${errorCode}`}
+		var msg = {message: `EL Stock Update Error - ${errorCode}`}
 	}else {
-		var msg = {message: `Laminvale Stock Updated`}
+		var msg = {message: `EL Stock Updated`}
 	}
 	p.send(msg, (err, result) => {
 		if ( err ) {
