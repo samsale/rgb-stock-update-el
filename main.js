@@ -15,7 +15,7 @@ const index = async () => {
     await updateProductThatIsNotInCsv(productsNotInCsvArray)
     let shopifyUpdateArray = await checkWhatIsInStore(stockUpdateArray, productsArray)
     await updateStock(shopifyUpdateArray)
-    await sendPushMessage()
+    await sendPushMessage(false)
   }
   catch(err){
      sendPushMessage(err.name)
@@ -23,4 +23,4 @@ const index = async () => {
   }
 }
 
-index();
+exports.handler = index;

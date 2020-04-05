@@ -17,11 +17,14 @@ getTodaysEmail = async () => {
   //make connection
   let connection = await imaps.connect(config)
   //open the stock updates folder
-  await connection.openBox('StockUpdates')
+  let stockUpdateInbox = await connection.openBox('StockUpdates')
   //create today's date
-  let today = new Date().toDateString()
-  // search for all emails from today
-  var searchCriteria = [ 'ALL', ['ON', today] ];
+  let mostRecentEmailIndex = stockUpdateInbox.messages.total
+
+  // var searchCriteria = [ 'ALL', ['ON', today] ];
+    // search for most recent email
+  var searchCriteria = [`${mostRecentEmailIndex}`];
+
   // define what to return
   var fetchOptions = {bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)'], struct: true, markSeen: true};
   //return array of emails from today
