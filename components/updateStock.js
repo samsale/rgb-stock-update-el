@@ -1,4 +1,5 @@
 const Shopify = require('shopify-api-node');
+const sendPushMessage = require('./sendPushMessage');
 
 // create shopify store object
 const shopify = new Shopify({
@@ -24,8 +25,9 @@ module.exports = async (arrayOfProducts) => {
     let response = await shopify.inventoryLevel.set({"inventory_item_id": product['inventory_item_id'],
                                       "location_id": 4045635628,
                                       "available":quanity})
-                                    
+
     count++
   }
+  sendPushMessage(false)
   console.log(`${count} products updated in store`);
 }

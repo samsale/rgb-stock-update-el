@@ -17,7 +17,7 @@ getTodaysEmail = async () => {
   //make connection
   let connection = await imaps.connect(config)
   //open the stock updates folder
-  let stockUpdateInbox = await connection.openBox('StockUpdates')
+  let stockUpdateInbox = await connection.openBox('StockUpdates', false)
   //create today's date
   let mostRecentEmailIndex = stockUpdateInbox.messages.total
 
