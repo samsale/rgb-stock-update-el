@@ -28,6 +28,7 @@ module.exports = async (arrayOfProducts) => {
 
     count++
   }
-  sendPushMessage(false)
-  console.log(`${count} products updated in store`);
+
+  console.log(`${count} products updated in store`)
+   return count;
 }

@@ -14,11 +14,11 @@ module.exports =  async (stockUpdateArray, inStoreArray) =>{
       alreadyInStoreArray.push(value)
     }
   }
-  console.log(`${alreadyInStoreArray.length} products to update`);
+  await console.log(`${alreadyInStoreArray.length} products to update`);
   let discountinued = notInStoreArray.filter(product => product.comment === "DISCONTINUED")
   let notDiscountinued = notInStoreArray.filter(product => product.comment !== "DISCONTINUED")
-  console.log(`${notInStoreArray.length} are in the csv but not in store. ${discountinued.length} of those are disconituned`);
-  console.log(`The others that are not discontinued are:`)
+  await console.log(`${notInStoreArray.length} are in the csv but not in store. ${discountinued.length} of those are disconituned`);
+  await console.log(`The others that are not discontinued are:`)
   for (var variable of notDiscountinued) {
     console.log(variable.sku);
   }
