@@ -1,6 +1,6 @@
 const dotenv = require('dotenv').config()
 const downloadShopifyProducts = require('./components/downloadShopifyProducts');
-const gmailToJson = require('./components/gmailToJson');
+const gmailToJson = require('./components/gmailApiToJson.js');
 const checkWhatIsInStore = require('./components/sortProducts');
 const updateStock = require('./components/updateStock');
 const checkWhatIsInStoreButNoInCSV = require('./components/checkWhatIsInStoreButNoInCSV');

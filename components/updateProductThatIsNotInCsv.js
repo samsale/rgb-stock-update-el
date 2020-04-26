@@ -19,9 +19,9 @@ module.exports = async (productsNotInCsvArray) => {
     let fromShopify = await shopify.product.list({vendor: vendor, fields: 'vendor,tags,id'})
       emptyArray.push(fromShopify)
       }
-  let laminvaleProductsOnShopify = [].concat.apply([],emptyArray)
+  let europaLeisureProductsOnShopify = [].concat.apply([],emptyArray)
 
-  for (var product of laminvaleProductsOnShopify) {
+  for (var product of europaLeisureProductsOnShopify) {
     if(productsNotInCsvArray.some(object => object.product_id === product.id)){
       let tagsFromProduct = product.tags
       // if product does not have the delete tag

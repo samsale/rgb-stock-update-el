@@ -1,5 +1,4 @@
 const Shopify = require('shopify-api-node');
-const sendPushMessage = require('./sendPushMessage');
 
 // create shopify store object
 const shopify = new Shopify({
@@ -16,9 +15,9 @@ module.exports = async (arrayOfProducts) => {
   for(let product of arrayOfProducts){
     let quanity = 100
     if (product.stockDescription === "GOOD") {
-      quanity = 30
+      quanity = Math.floor(Math.random() * (30 - 15 + 1) + 15)
     } else if (product.stockDescription === "LOW") {
-      quanity = 6
+      quanity = parseInt(product.quantity)
     }else if (product.stockDescription === "OUT"){
       quanity = 0
     }
