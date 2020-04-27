@@ -17,7 +17,7 @@ module.exports = async (arrayOfProducts) => {
     if (product.stockDescription === "GOOD") {
       quanity = Math.floor(Math.random() * (30 - 15 + 1) + 15)
     } else if (product.stockDescription === "LOW") {
-      quanity = (!product.quantity) ? 7 : parseInt(product.quantity);
+      quanity = (product.quantity) ? parseInt(product.quantity) : 7;
     }else if (product.stockDescription === "OUT"){
       quanity = 0
     }
