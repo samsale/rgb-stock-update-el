@@ -7,20 +7,18 @@ const checkWhatIsInStoreButNoInCSV = require('./components/checkWhatIsInStoreBut
 const updateProductThatIsNotInCsv = require('./components/updateProductThatIsNotInCsv');
 const sendPushMessage = require('./components/sendPushMessage');
 
-const index = async () => {
+module.exports.index = async () => {
   try{
-    let stockUpdateArray = await gmailToJson()
+    let [stockUpdateArray, stringForPushMessage] = await gmailToJson()
     let productsArray = await downloadShopifyProducts()
     let productsNotInCsvArray = await checkWhatIsInStoreButNoInCSV(stockUpdateArray, productsArray)
     await updateProductThatIsNotInCsv(productsNotInCsvArray)
     let shopifyUpdateArray = await checkWhatIsInStore(stockUpdateArray, productsArray)
     let numberOfProductsUpdated = await updateStock(shopifyUpdateArray)
-    await sendPushMessage(`${numberOfProductsUpdated} products updated`, -2)
+    await sendPushMessage(`${numberOfProductsUpdated} products updated - ${stringForPushMessage}`, -2)
   }
   catch(err){
      await sendPushMessage(`Error (${err.source})`, 1)
      console.log(err);
   }
 }
-
-exports.handler = index;

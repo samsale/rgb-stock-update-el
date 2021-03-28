@@ -44,7 +44,12 @@ const downloadCsvFromGmail = async () => {
     // Convert the base64 csv to utf-8
     let csv = await Buffer.from(csvObject.data.data, 'base64').toString('utf8')
 
-    return csv
+    const emailReceivedDateAsInt = parseInt(stockUpdateEmail.data.internalDate)
+    let stringForPushMessage = `Using the email that was received on ${new Date(emailReceivedDateAsInt).toDateString()}`
+    console.log(stringForPushMessage);
+
+
+    return [csv, stringForPushMessage]
   } catch (e) {
     console.log(e);
   }
@@ -60,14 +65,12 @@ csvToJson = async (csvString) => {
   return jsonArray
 }
 
-
-
 module.exports = async () => {
-  let csv = await downloadCsvFromGmail()
+  let [csv, stringForPushMessage] = await downloadCsvFromGmail()
   let data = await csvToJson(csv)
   if (data.length < 30 || data == null) {
     throw new Error('Issue with csv')
   } else {
-    return data
+    return [data, stringForPushMessage]
   }
 }

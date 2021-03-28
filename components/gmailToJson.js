@@ -34,7 +34,9 @@ getTodaysEmail = async () => {
 
   //discard everything but the first email
   const message = arrayOfMessages.shift();
-
+  
+  console.log(message);
+  
   // get parts of the email
   var parts = await imaps.getParts(message.attributes.struct);
 

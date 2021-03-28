@@ -11,14 +11,17 @@ const shopify = new Shopify({
 
 
 module.exports = async (arrayOfProducts) => {
+  const tablesToIgnore = []
   let count = 0
   for(let product of arrayOfProducts){
     let quanity = 100
-    if (product.stockDescription === "GOOD") {
-      quanity = Math.floor(Math.random() * (30 - 15 + 1) + 15)
+    if(tablesToIgnore.includes(product.sku)){
+      quanity = 2
+    } else if (product.stockDescription === "GOOD") {
+      quanity = Math.floor(Math.random() * (13 - 8 + 1) + 8)
     } else if (product.stockDescription === "LOW") {
       quanity = (product.quantity) ? parseInt(product.quantity) : 7;
-    }else if (product.stockDescription === "OUT"){
+    } else if (product.stockDescription === "OUT"){
       quanity = 0
     }
     let response = await shopify.inventoryLevel.set({"inventory_item_id": product['inventory_item_id'],
