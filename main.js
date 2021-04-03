@@ -4,16 +4,16 @@ const gmailToJson = require('./components/gmailApiToJson.js');
 const checkWhatIsInStore = require('./components/sortProducts');
 const updateStock = require('./components/updateStock');
 const checkWhatIsInStoreButNoInCSV = require('./components/checkWhatIsInStoreButNoInCSV');
-const updateProductThatIsNotInCsv = require('./components/updateProductThatIsNotInCsv');
 const sendPushMessage = require('./components/sendPushMessage');
+const updateStockMetadata = require('./components/updateStockMetadata')
 
 module.exports.index = async () => {
   try{
     let [stockUpdateArray, stringForPushMessage] = await gmailToJson()
     let productsArray = await downloadShopifyProducts()
     let productsNotInCsvArray = await checkWhatIsInStoreButNoInCSV(stockUpdateArray, productsArray)
-    await updateProductThatIsNotInCsv(productsNotInCsvArray)
     let shopifyUpdateArray = await checkWhatIsInStore(stockUpdateArray, productsArray)
+    await updateStockMetadata(shopifyUpdateArray)
     let numberOfProductsUpdated = await updateStock(shopifyUpdateArray)
     await sendPushMessage(`${numberOfProductsUpdated} products updated - ${stringForPushMessage}`, -2)
   }

@@ -11,6 +11,8 @@ module.exports =  async (stockUpdateArray, inStoreArray) =>{
     }else{
       let objWithProductId = inStoreArray.find(obj => obj.sku === value.sku);
       value["inventory_item_id"] = objWithProductId.inventory_item_id
+      value["variant_id"] = objWithProductId.id
+
       alreadyInStoreArray.push(value)
     }
   }
@@ -21,7 +23,6 @@ module.exports =  async (stockUpdateArray, inStoreArray) =>{
   await console.log(`The others that are not discontinued are:`)
   for (var variable of notDiscountinued) {
     console.log(variable.sku);
-  }
-
+  }  
   return alreadyInStoreArray
 }
