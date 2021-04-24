@@ -9,6 +9,14 @@ const shopify = new Shopify({
   timeout: 60000
 });
 
+const validateDate = (nextDeliveryDateStatus) => {
+  const elDateRegex = /^(([0-9])|([0-2][0-9])|([3][0-1]))\-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\-\d{2}$/gmi
+
+  if (!nextDeliveryDateStatus) return false
+  if (nextDeliveryDateStatus === "FINISHED") return false
+  if (elDateRegex.test(nextDeliveryDateStatus)) return true
+}
+
 
 module.exports = async (arrayOfProducts) => {
   const tablesToIgnore = []
@@ -27,7 +35,11 @@ module.exports = async (arrayOfProducts) => {
     let response = await shopify.inventoryLevel.set({"inventory_item_id": product['inventory_item_id'],
                                       "location_id": 4045635628,
                                       "available":quanity})
-
+    if(validateDate(product.nextDeliveryDate) && product.stockDescription === "OUT"){
+      await shopify.productVariant.update(product['variant_id'], {"inventory_policy": "continue"})
+    }else{
+      await shopify.productVariant.update(product['variant_id'], {"inventory_policy": "deny"})
+    }
     count++
   }
 

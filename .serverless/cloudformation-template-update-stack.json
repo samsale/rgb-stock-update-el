@@ -161,7 +161,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/rgb-stock-update-europa-leisure/dev/1616379710996-2021-03-22T02:21:50.996Z/rgb-stock-update-europa-leisure.zip"
+          "S3Key": "serverless/rgb-stock-update-europa-leisure/dev/1618190713082-2021-04-12T01:25:13.082Z/rgb-stock-update-europa-leisure.zip"
         },
         "Handler": "main.index",
         "Runtime": "nodejs12.x",
@@ -179,14 +179,14 @@
         "HelloLogGroup"
       ]
     },
-    "HelloLambdaVersionvgJ8IWQw2PfqAjoxYafsWtH96mX8EXaAXY879ahY9A": {
+    "HelloLambdaVersioneczaIOtGHL67JRDM64ICwbeQmce1RbNIziVAcIJC0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "R8Qd5/dUWGMhejxa9yFmbyYef69pRDJKPSftV0d9+bo="
+        "CodeSha256": "OqUn0MQuQMm/91XnN7RXQYjMRjhrFEkEhEj/OC7lBXY="
       }
     },
     "HelloEventsRuleSchedule1": {
@@ -236,7 +236,7 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionvgJ8IWQw2PfqAjoxYafsWtH96mX8EXaAXY879ahY9A"
+        "Ref": "HelloLambdaVersioneczaIOtGHL67JRDM64ICwbeQmce1RbNIziVAcIJC0"
       }
     }
   }

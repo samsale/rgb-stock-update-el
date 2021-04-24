@@ -36,7 +36,7 @@ const checkValidMetaObject = (element) => element.namespace === 'stock' && eleme
 
 const createJsonStringForMetafield = (updateObject) => {
 
-  const metafieldObject = {can_pre_order: false, finished: false, date_when_back_in_stock: null}
+  let metafieldObject = {can_pre_order: false, finished: false, date_when_back_in_stock: null}
   //If the product is finished aka it won't be coming back in to stock
   if (updateObject.nextDeliveryDate === 'FINISHED') {
       metafieldObject.finished = true
@@ -46,16 +46,17 @@ const createJsonStringForMetafield = (updateObject) => {
 
   //If the product has a back in stock date then we know we can list it for pre-order
   if (validateDate(updateObject.nextDeliveryDate)) {
-  const covertedMonth = monthsMap[metafieldObject.date_when_back_in_stock[1]]
-  const dateWith20Added = `20${metafieldObject.date_when_back_in_stock[2]}`
-  const dateStringAsAnArray = updateObject.nextDeliveryDate.split("-")
-  
-  metafieldObject.can_pre_order = true 
-  metafieldObject.date_when_back_in_stock = dateStringAsAnArray
-  metafieldObject.date_when_back_in_stock[1] = covertedMonth
-  metafieldObject.date_when_back_in_stock[2] = dateWith20Added
+    metafieldObject.can_pre_order = true 
+    const dateStringAsAnArray = updateObject.nextDeliveryDate.split("-")
+    metafieldObject.date_when_back_in_stock = dateStringAsAnArray
 
-  return JSON.stringify(metafieldObject)
+    const covertedMonth = monthsMap[metafieldObject.date_when_back_in_stock[1]]
+    const dateWith20Added = `20${metafieldObject.date_when_back_in_stock[2]}`
+    
+    metafieldObject.date_when_back_in_stock[1] = covertedMonth
+    metafieldObject.date_when_back_in_stock[2] = dateWith20Added
+
+    return JSON.stringify(metafieldObject)
   }
 
   //If the product does not have a back in stock date then we won't make it availble for pre-order
