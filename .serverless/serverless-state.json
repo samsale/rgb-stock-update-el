@@ -174,7 +174,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rgb-stock-update-europa-leisure/dev/1618190713082-2021-04-12T01:25:13.082Z/rgb-stock-update-europa-leisure.zip"
+                "S3Key": "serverless/rgb-stock-update-europa-leisure/dev/1619238631787-2021-04-24T04:30:31.787Z/rgb-stock-update-europa-leisure.zip"
               },
               "Handler": "main.index",
               "Runtime": "nodejs12.x",
@@ -192,14 +192,14 @@
               "HelloLogGroup"
             ]
           },
-          "HelloLambdaVersioneczaIOtGHL67JRDM64ICwbeQmce1RbNIziVAcIJC0": {
+          "HelloLambdaVersionLh6eyA34TJabewiIH2vhbvHH2kXCQT5mpfcytrw4a0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "OqUn0MQuQMm/91XnN7RXQYjMRjhrFEkEhEj/OC7lBXY="
+              "CodeSha256": "aKC9SaWACNrIZ7c+gt4egXnTJcK2LxFBoCD9ei4Ml70="
             }
           },
           "HelloEventsRuleSchedule1": {
@@ -249,7 +249,7 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersioneczaIOtGHL67JRDM64ICwbeQmce1RbNIziVAcIJC0"
+              "Ref": "HelloLambdaVersionLh6eyA34TJabewiIH2vhbvHH2kXCQT5mpfcytrw4a0"
             }
           }
         }
@@ -353,7 +353,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersioneczaIOtGHL67JRDM64ICwbeQmce1RbNIziVAcIJC0"
+        "versionLogicalId": "HelloLambdaVersionLh6eyA34TJabewiIH2vhbvHH2kXCQT5mpfcytrw4a0"
       }
     },
     "configValidationMode": "warn",
@@ -374,7 +374,7 @@
     "artifact": "/Users/samsale/Documents/code/shopify/rgb-stock-update-el/.serverless/rgb-stock-update-europa-leisure.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/rgb-stock-update-europa-leisure/dev/1618190713082-2021-04-12T01:25:13.082Z",
+    "artifactDirectoryName": "serverless/rgb-stock-update-europa-leisure/dev/1619238631787-2021-04-24T04:30:31.787Z",
     "artifact": "rgb-stock-update-europa-leisure.zip"
   }
 }

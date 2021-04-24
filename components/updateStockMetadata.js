@@ -24,6 +24,8 @@ const monthsMap = {
   'Dec' : 'December'
 }
 
+const byronManorTables = ["BM-001", "BM-007", "BM-010", "BM-022", "BM-028", "BM-037", "BM-046", "BM-058"]
+
 const validateDate = (nextDeliveryDateStatus) => {
   const elDateRegex = /^(([0-9])|([0-2][0-9])|([3][0-1]))\-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\-\d{2}$/gmi
 
@@ -37,6 +39,12 @@ const checkValidMetaObject = (element) => element.namespace === 'stock' && eleme
 const createJsonStringForMetafield = (updateObject) => {
 
   let metafieldObject = {can_pre_order: false, finished: false, date_when_back_in_stock: null}
+
+    //If the product is a byron manor table
+    if (byronManorTables.includes(updateObject.sku)) {
+      return JSON.stringify(metafieldObject)
+  }
+
   //If the product is finished aka it won't be coming back in to stock
   if (updateObject.nextDeliveryDate === 'FINISHED') {
       metafieldObject.finished = true
