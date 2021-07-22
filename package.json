@@ -14,7 +14,7 @@
     "pushover-notifications": "^1.2.2",
     "request": "^2.88.0",
     "shopify-api-node": "^2.25.1",
-    "xlsx": "^0.15.1"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {},
   "scripts": {
